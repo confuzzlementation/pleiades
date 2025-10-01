@@ -1,2 +1,2 @@
-# pleiades-P
+# pleiades :P
 fighting fire with water!!
