@@ -20,6 +20,14 @@ app.register_blueprint(model_bp, url_prefix="/api")
 def displayHome():
     return render_template("home.html")
 
+@app.route('/model', methods=['GET'])
+def displayModel():
+    return render_template("model.html")
+
+@app.route("/adv", methods=["GET"])
+def displayAdvancedModel():
+    return render_template("advmodel.html")
+
 @app.route("/health", methods=["GET"])
 def health_check():
     from flask import jsonify
