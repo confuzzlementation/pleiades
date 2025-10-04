@@ -18,11 +18,12 @@
 
 /* default elements */
 body {
-    margin: auto;
-    font-family: "Lexend";
-    background-color: var(--bg);
-    color: var(--text);
-    overflow: scroll;
+  margin: auto;
+  font-family: "Lexend";
+  background-color: var(--bg);
+  color: var(--text);
+  overflow: scroll;
+  font-size: 18px;
 }
 
 hr {
@@ -40,3 +41,7 @@ a {
 }
 
 /* classes */
+.centreBox {
+    margin: auto;
+    width: 70%;
+}
