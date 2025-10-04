@@ -25,7 +25,7 @@ class ModelManager:
             dmatrix = xgb.DMatrix(data=X, label=Y, enable_categorical=True)
 
             params = {
-                "objective": "reg:logistic",
+                "objective": "binary:logistic",
                 "max_depth": 50,
                 "learning_rate": 0.50,
                 "alpha": 5,
