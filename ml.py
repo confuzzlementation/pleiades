@@ -1,46 +1,73 @@
-from sklearn.model_selection import StratifiedGroupKFold
+import optuna
+from sklearn.model_selection import StratifiedGroupKFold, train_test_split
+from sklearn.metrics import roc_auc_score
 import pandas as pd
 import xgboost as xgb
-import numpy as np
-import matplotlib as mpl
-from sklearn.model_selection import RandomizedSearchCV
-import scipy.stats as stats
-from sklearn.model_selection import train_test_split
+import warnings
 
+warnings.filterwarnings("ignore")
+xgb.set_config(verbosity=0)
+optuna.logging.set_verbosity(optuna.logging.WARNING)
 
 data = pd.read_csv("data.csv")
 groups = data["kepid"]
-
 data = data.replace("CANDIDATE", 1).replace("FALSE POSITIVE", 0).drop("kepid", axis=1)
 
+X, y = data.iloc[:, :-1], data.iloc[:, -1]
+X_train, X_test, y_train, y_test, groups_train, groups_test = train_test_split(
+    X, y, groups, test_size=0.2, random_state=123, stratify=y
+)
 
-X, Y = data.iloc[:,:-1], data.iloc[:,-1]
-X_train, X_test, Y_train, Y_test= train_test_split(X, Y, test_size=0.2, random_state=123)
+def objective(trial):
+    sgkf = StratifiedGroupKFold(n_splits=5, shuffle=True, random_state=123)
 
-sgkf = StratifiedGroupKFold(n_splits=5, shuffle=True, random_state=123)
-folds = list(sgkf.split(X=X, y=Y, groups=groups))
+    params = {
+        "objective": "binary:logistic",
+        "eval_metric": "auc",
+        "verbosity": 0,
+        "tree_method": "hist",
+        "max_depth": trial.suggest_int("max_depth", 6, 60),
+        "learning_rate": trial.suggest_float("learning_rate", 0.001, 0.05, log=True),
+        "alpha": trial.suggest_float("alpha", 0.0, 5.0),
+        "lambda": trial.suggest_float("lambda", 0.0, 5.0),
+        "subsample": trial.suggest_float("subsample", 0.6, 1.0),
+        "colsample_bytree": trial.suggest_float("colsample_bytree", 0.4, 1.0),
+        "min_child_weight": trial.suggest_int("min_child_weight", 1, 6),
+        "n_estimators": trial.suggest_int("n_estimators", 1, 3000),
+        
+        "gamma": trial.suggest_float("gamma", 0.0, 10.0)
+    }
 
+    aucs = []
+    for train_idx, val_idx in sgkf.split(X_train, y_train, groups_train):
+        X_tr, X_val = X_train.iloc[train_idx], X_train.iloc[val_idx]
+        y_tr, y_val = y_train.iloc[train_idx], y_train.iloc[val_idx]
 
+        model = xgb.XGBClassifier(**params)
+        model.fit(
+            X_tr, y_tr,
+            eval_set=[(X_val, y_val)],
+            verbose=False
+        )
 
-dmatrix = xgb.DMatrix(data=X, label=Y, enable_categorical=True)
-params = {  
-            
-            "max_depth": stats.randint(3, 100),
-            'learning_rate': stats.uniform(0.01, 1.00),
-            "alpha": stats.uniform(0.01, 0.99),
-            'subsample': stats.uniform(0.5, 0.5),
-            'n_estimators':stats.randint(1, 200),
-            "colsample_bytree": stats.uniform(0.1, 0.9),
-            "min_child_weight": stats.randint(1, 10),
-            "lambda": stats.uniform(0.01, 0.99)
-        }
+        preds = model.predict_proba(X_val)[:, 1]
+        auc = roc_auc_score(y_val, preds)
+        aucs.append(auc)
 
+    return sum(aucs) / len(aucs)
 
-xgb_model = xgb.XGBClassifier(objective="binary:logistic", early_stopping_rounds= 250)
-random_search = RandomizedSearchCV(xgb_model, param_distributions=params, n_iter= 1000, cv=5, scoring="roc_auc", error_score="raise", random_state=123)
+study = optuna.create_study(direction="maximize", sampler=optuna.samplers.TPESampler(seed=123), pruner=optuna.pruners.MedianPruner())
+study.optimize(objective, n_trials= 200, n_jobs=-1, show_progress_bar=True)
 
-random_search.fit(X_train, Y_train, eval_set=[(X_test, Y_test)])
+print("Best parameters:", study.best_params)
+print("Best CV AUC:", study.best_value)
 
+best_params = study.best_params
+final_model = xgb.XGBClassifier(**best_params, verbosity=0)
+final_model.fit(X_train, y_train, verbose=2)
+test_preds = final_model.predict_proba(X_test)[:, 1]
+test_auc = roc_auc_score(y_test, test_preds)
+print("Test AUC:", test_auc)
 
-print("Best Hyperparameters:", random_search.best_params_)
-print("Best Cross-Validation Score:", random_search.best_score_)
+optuna.visualization.plot_optimization_history(study).show()
+optuna.visualization.plot_param_importances(study).show()
