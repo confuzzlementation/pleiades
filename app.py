@@ -3,6 +3,8 @@ from flask_cors import CORS
 from routes.prediction_routes import prediction_bp
 from routes.model_routes import model_bp
 from utils.model_manager import ModelManager
+from flask import redirect
+from flask import render_template
 
 app = Flask(__name__)
 CORS(app)
@@ -14,6 +16,9 @@ app.config["MODEL_MANAGER"] = model_manager
 app.register_blueprint(prediction_bp, url_prefix="/api")
 app.register_blueprint(model_bp, url_prefix="/api")
 
+@app.route('/', methods=['GET'])
+def displayHome():
+    return render_template("home.html")
 
 @app.route("/health", methods=["GET"])
 def health_check():
