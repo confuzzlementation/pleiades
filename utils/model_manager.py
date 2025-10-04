@@ -16,6 +16,7 @@ class ModelManager:
     def train_and_save_model(self):
         with self.lock:
             data = pd.read_csv("data.csv")
+            groups = data["kepid"]
             data = data.replace("CANDIDATE", 1).replace("FALSE POSITIVE", 0)
             X, Y = data.iloc[:, :-1], data.iloc[:, -1]
 
@@ -30,7 +31,7 @@ class ModelManager:
                 "alpha": 5,
             }
 
-            self.model = xgb.train(params=params, dtrain=dmatrix, num_boost_round=1000)
+            self.model = xgb.train(params=params, dtrain=dmatrix, num_boost_round=1000, early_stopping_rounds=500)
 
             self.model.save_model(self.model_path)
             with open(self.features_path, "wb") as f:
