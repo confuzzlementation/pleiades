@@ -34,9 +34,9 @@
   float: right;
   /* position: sticky; */
   /* top: 0; */
-  /* overflow: hidden; */
+  overflow: hidden;
   /* background-color: var(--bg); */
-  /* z-index: 100; */
+  z-index: 100;
 }
 
 .topnav a:hover {
