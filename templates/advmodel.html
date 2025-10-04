@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="static/css/base.css">
     <link rel="stylesheet" href="static/css/navbar.css">
     <link rel="stylesheet" href="static/css/advmodel.css">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 </head>
 <body onload="loginButtonDisplay()">
     <div id="navbar" class="topnav">
@@ -24,11 +25,17 @@
 
     <section class="hero" id="BGBox">
         <div class="hero-content halfbox whiteGradient">
-            <h1 class="vertMiddle"> Advanced Model: Hyperparameter Tweaking </h1>
+            <div class="vertMiddle">
+                <br>
+                <h1 id="formH1"> Advanced Model </h1>
+                <p> Hyperparameter Tweaking </p>
+            </div>
+            <!-- <h1 class="vertMiddle"> Advanced Model </h1>
+            <h2 class="vertMiddle"> Hyperparameter Tweaking </h2> -->
             <form id="registerForm">
                 <div class="inputField">
                     <label for="max_depth"> 
-                        <box-icon name="layers-down-right" class="icon"></box-icon>
+                        <box-icon name="layers" class="icon"></box-icon> <!-- boxicons is failing me here-->
                     </label>
                     <input type="number" placeholder="max_depth" id="max_depth" name="max_depth">
                     <!-- <input pattern="^[0-9]*$/" title="Positive integer values accepted." type="text" name="firstname" id="firstnameInput" placeholder="Firstname"> -->
