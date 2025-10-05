@@ -24,9 +24,13 @@ def displayHome():
 def displayModel():
     return render_template("model.html")
 
-@app.route("/adv", methods=["GET"])
-def displayAdvancedModel():
-    return render_template("advmodel.html")
+# @app.route("/adv", methods=["GET"])
+# def displayAdvancedModel():
+#     return render_template("advmodel.html")
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
 
 @app.route("/health", methods=["GET"])
 def health_check():
