@@ -1,10 +1,11 @@
+import flask
 from flask import Flask
 from flask_cors import CORS
 from routes.prediction_routes import prediction_bp
 from routes.model_routes import model_bp
 from utils.model_manager import ModelManager
-from flask import redirect
 from flask import render_template
+from flask import jsonify
 
 app = Flask(__name__)
 CORS(app)
@@ -20,9 +21,25 @@ app.register_blueprint(model_bp, url_prefix="/api")
 def displayHome():
     return render_template("home.html")
 
-@app.route('/model', methods=['GET'])
+@app.route('/model', methods=['GET', 'POST'])
 def displayModel():
-    return render_template("model.html")
+    if flask.request.method == 'GET':
+        return(render_template('main.html'))
+    if flask.request.method == "POST":
+        max_depth = flask.request.form['max_depth']
+        #etc. do ^^ for whichever other parameters we end up using
+        # return(flask.render_template('main.html', predict_text=predict_text, movie=movie, result=prediction))
+        ''' 
+        follow this for integration? https://blog.bolajiayodeji.com/how-to-deploy-a-machine-learning-model-to-the-web
+        add model results like this into the html as well (but change the parameters in the comment above and in this one)
+        <div class="result mt-12" align="center">
+          <span id="predict_text">{{ predict_text }}</span>
+          <span id="selected_movie" class="text-gray-700">{{ movie }}</span>
+          <p class="text-blue-700 text-lg font-bold border rounded mt-4">
+            {{ result }}
+          </p>
+        </div>
+        '''
 
 # @app.route("/adv", methods=["GET"])
 # def displayAdvancedModel():
@@ -34,8 +51,6 @@ def page_not_found(e):
 
 @app.route("/health", methods=["GET"])
 def health_check():
-    from flask import jsonify
-
     return jsonify(
         {"status": "healthy", "model_loaded": model_manager.model is not None}
     )
