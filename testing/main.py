@@ -18,23 +18,26 @@ folds = list(sgkf.split(X=X, y=Y, groups=groups))
 
 dmatrix = xgb.DMatrix(data=X, label=Y, enable_categorical=True)
 params = {
-    "objective":"binary:logistic",
-    "max_depth":50,
-    "learning_rate": 0.03316681838863674,
-    "alpha": 0.7846048175419013,
-    "subsample": 0.8994613666075066,
+    "objective": "binary:logistic",
+    "max_depth": 16,
+    "learning_rate": 0.0065871201940497885,
+    "alpha": 1.2833158015123136,
+    "lambda": 0.7421885850676595,
+    "gamma": 0.48389372530923047,
+    "subsample": 0.8360643402670199,
     "colsample_bytree": 0.4911275665288193,
-    "min_child_weight": 3
+    "min_child_weight": 2
+    # "n_estimators": 2576
 }
 
 results = xgb.cv(
     dtrain=dmatrix,
     params=params, nfold=5,
     num_boost_round=1000,
-    early_stopping_rounds=500, 
+    early_stopping_rounds=500,
     metrics="auc",
     as_pandas=True,
     seed=123
 )
 
-print(1-results["test-auc-mean"].iloc[-1])
+print(results["test-auc-mean"].iloc[-1])
