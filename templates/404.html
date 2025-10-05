@@ -22,16 +22,19 @@
     </div>
     <hr>
 
-    <div class="centred">
-        <h1 id="errorHeading"> 404</h1>
-        <h1> Page not found D: </h1>
-        <h3> Maybe it was lost in the space-time continuum? </h3>
-        <br>
-        <h3><a href="/" class="button">Go back to Home</a><h3>
+        <div class="horizontal-container">
+        <div id="scroll-glass">
+            <section class="glass">
+                <h1 id="errorHeading"> 404</h1>
+                <h1> Page not found D: </h1>
+                <h3> Maybe it was lost in the space-time continuum? </h3>
+                <h3><a href="/" class="button">Go back to Home</a><h3>
+            </section>
+        </div>
     </div>
-</div>
     
-<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-<script src="static/js/formTemplate.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/parallax.js') }}"></script>
 </body>
 </html>
