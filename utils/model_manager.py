@@ -10,8 +10,8 @@ class ModelManager:
         self.model = None
         self.feature_columns = None
         self.lock = Lock()
-        self.model_path = "xgb_model.json"
-        self.features_path = "feature_columns.pkl"
+        self.model_path = "model.sav"
+        self.features_path = "features.pkl"
 
     def train_and_save_model(self):
         with self.lock:
@@ -35,21 +35,20 @@ class ModelManager:
                 "min_child_weight": 2,
             }
 
-            self.model = xgb.train(params=params, dtrain=dmatrix, num_boost_round=1000, early_stopping_rounds=500)
+            self.model = xgb.train(params=params, dtrain=dmatrix, num_boost_round=10000, early_stopping_rounds=250)
 
-            self.model.save_model(self.model_path)
+            pickle.dump(self.model, open(self.model_path, 'wb'))
+
             with open(self.features_path, "wb") as f:
                 pickle.dump(self.feature_columns, f)
-
+            
             print("Model trained and saved successfully!")
             return self.model
 
     def load_model(self):
         with self.lock:
-            if os.path.exists(self.model_path) and os.path.exists(self.features_path):
-                self.model = xgb.Booster()
-                self.model.load_model(self.model_path)
-
+            if os.path.exists(self.model_path):
+                self.model = pickle.load(open(self.model_path, 'rb'))
                 with open(self.features_path, "rb") as f:
                     self.feature_columns = pickle.load(f)
 

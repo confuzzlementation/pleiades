@@ -72,7 +72,7 @@ def objective(trial):
         model.fit(
             X_tr, y_tr,
             eval_set=[(X_val, y_val)],
-            verbose=2,
+            verbose=0,
         )
 
         
