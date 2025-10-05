@@ -2,14 +2,13 @@ var popUp = document.getElementById('popUp');
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-    if (event.target == modal) {
+    if (event.target == popUp) {
         closePopup()
     }
 }
 //fix this
 function displayPopup(){
     popUp.style.display = 'flex';
-    popUp.style.width = 'auto';
 }
 
 function closePopup(){
