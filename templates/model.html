@@ -80,6 +80,153 @@
   </form>
 </div>
 
+
+<div id="featuresForm" class="horizontal-container">
+  <section id="featuresInput">
+    <fieldset>
+      <legend>Transit Properties</legend>
+      <label>Orbital Period (days)
+        <span class="tooltip" title="Depth of the transit in parts per million (ppm).">?</span>
+        <input type="number" name="transit_depth" placeholder="e.g., 500" step="1" min="0">
+      </label>
+      <label>Transit Epoch (BJD - 2454900)
+        <span class="tooltip" title="Duration of the transit in hours.">?</span>
+        <input type="number" name="transit_duration" placeholder="e.g., 2.5" step="0.01" min="0">
+      </label>
+      <label>Impact Parameter
+        <span class="tooltip" title="Impact parameter of the transit.">?</span>
+        <input type="number" name="impact_parameter" placeholder="e.g., 0.5" step="0.01" min="0">
+      </label>
+      <label>Transit Duration (hours)
+        <span class="tooltip" title="Duration of the transit in hours.">?</span>
+        <input type="number" name="transit_duration" placeholder="e.g., 2.5" step="0.01" min="0">
+      </label>
+      <label>Transit Depth (ppm)
+        <span class="tooltip" title="Depth of the transit in parts per million (ppm).">?</span>
+        <input type="number" name="transit_depth" placeholder="e.g., 500" step="1" min="0">
+      </label>
+      <label>Planet-Star Radius Ratio 
+        <span class="tooltip" title="Planet radius divided by stellar radius.">?</span>
+        <input type="number" name="ps_rr" placeholder="e.g., 0.02" step="0.01" min="0">
+      </label>
+      <label>Fitted Stellar Density (g/cm³)
+        <span class="tooltip" title="">?</span>
+        <input type="number" name="stellar_density" placeholder="e.g., 15.0" step="0.1" min="0">
+      </label>
+      <label>Planetary Radius (Earth radii)
+        <span class="tooltip" title="Estimated planet radius in Earth radii.">?</span>
+        <input type="number" name="planet_radius" placeholder="e.g., 2.0" step="0.1" min="0">
+      </label>
+      <label>Orbit Semi-Major Axis (AU)
+        <span class="tooltip" title="Estimated semi-major axis of the orbit in AU.">?</span>
+        <input type="number" name="semi_major_axis" placeholder="e.g., 0.05" step="0.01" min="0">
+      </label>
+      <label>Inclination (degrees)
+        <span class="tooltip" title="Inclination of the orbit in degrees.">?</span>
+        <input type="number" name="inclination" placeholder="e.g., 89.5" step="0.01" min="0" max="90">
+      </label>
+      <label>Insolation Flux (Earth flux)
+        <span class="tooltip" title="Estimated insolation flux in Earth flux units.">?</span>
+        <input type="number" name="insolation_flux" placeholder="e.g., 100" step="1" min="0">
+      </label>
+      <label> Limb Darkening Coefficent 1 
+        <span class="tooltip" title="Limb darkening coefficient u1.">?</span>
+        <input type="number" name="limb_darkening_1" placeholder="e.g., 0.3" step="0.01" min="0" max="1">
+      </label>
+      <label> Limb Darkening Coefficent 2 
+        <span class="tooltip" title="Limb darkening coefficient u2.">?</span>
+        <input type="number" name="limb_darkening_2" placeholder="e.g., 0.2" step="0.01" min="0" max="1">
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Threshold-Crossing Event (TCE)</legend>
+      <label>Maximum Single Event Statistic
+        <span class="tooltip" title="Maximum single event statistic (SES) value.">?</span>
+        <input type="number" name="max_ses" placeholder="e.g., 10.0" step="0.1" min="0">
+      </label>
+      <label>Maximum Multiple Event Statistic
+        <span class="tooltip" title="Multiple event statistic (MES) value.">?</span>
+        <input type="number" name="mes" placeholder="e.g., 15.0" step="0.1" min="0">
+      </label>
+      <label>Transit Signal-to-Noise Ratio
+        <span class="tooltip" title="Transit Signal-to-Noise ratio of the detection.">?</span>
+        <input type="number" name="snr" placeholder="e.g., 12.0" step="0.1" min="0">
+      </label>
+      <label>Odd-Even Transit Depth
+        <span class="tooltip" title="Ratio of odd to even transit depths.">?</span>
+        <input type="number" name="odd_even_depth" placeholder="e.g., 1.0" step="0.01" min="0">
+      </label>
+      <label>Stellar Effective Temperature (Kelvin)
+        <span class="tooltip" title="Effective temperature of the host star in Kelvin.">?</span>
+        <input type="number" name="stellar_temp" placeholder="e.g., 5500" step="1" min="0">
+      </label>
+      <label>Stellar Surface Gravity (log10(cms^-2))
+        <span class="tooltip" title="Logarithm of the stellar surface gravity in cm/s².">?</span>
+        <input type="number" name="stellar_logg" placeholder="e.g., 4.5" step="0.01" min="0">
+      </label>
+      <label>Stellar Metallicity 
+        <span class="tooltip" title="Metallicity of the star in dex.">?</span>
+        <input type="number" name="stellar_metallicity" placeholder="e.g., 0.0" step="0.01">
+      </label>
+      <label>Stellar Radius (Solar radii)
+        <span class="tooltip" title="Radius of the host star in Solar radii.">?</span>
+        <input type="number" name="stellar_radius" placeholder="e.g., 1.0" step="0.01" min="0">
+      </label>
+      <label>Stellar Mass (Solar masses)
+        <span class="tooltip" title="Mass of the host star in Solar masses.">?</span>
+        <input type="number" name="stellar_mass" placeholder="e.g., 1.0" step="0.01" min="0">
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>KIC Parameters</legend>
+      <label>RA (degrees)
+        <span class="tooltip" title="KIC Right Ascension.">?</span>
+        <input type="number" name="right_ascension" placeholder="e.g., 12.0" step="0.01" min="0">
+      </label>
+      <label>Dec (degrees)
+        <span class="tooltip" title="KIC Declination.">?</span>
+        <input type="number" name="kic_declination" placeholder="e.g., 10.0" step="0.01" min="-90" max="90">
+      </label>
+      <label>Kepler-band (mag)
+        <span class="tooltip" title="Magnitude of the star measured in the kepler Telescope's scpecific broadband filter.">?</span>
+        <input type="number" name="kepler_magnitude" placeholder="e.g., 12.0" step="0.01" min="0">
+      </label>
+      <label>KIC g'band Magnitude
+        <span class="tooltip" title="Magnitude of the star measured in the g' band filter.">?</span>
+        <input type="number" name="kic_g_magnitude" placeholder="e.g., 12.0" step="0.01" min="0">
+      </label>
+      <label>KIC r'band Magnitude
+        <span class="tooltip" title="Magnitude of the star measured in the r' band filter.">?</span>
+        <input type="number" name="kic_r_magnitude" placeholder="e.g., 12.0" step="0.01" min="0">
+      </label>
+      <label>KIC i'band Magnitude
+        <span class="tooltip" title="Magnitude of the star measured in the i' band filter.">?</span>
+        <input type="number" name="kic_i_magnitude" placeholder="e.g., 12.0" step="0.01" min="0">
+      </label>
+      <label>KIC z'band Magnitude
+        <span class="tooltip" title="Magnitude of the star measured in the z' band filter.">?</span>
+        <input type="number" name="kic_z_magnitude" placeholder="e.g., 12.0" step="0.01" min="0">
+      </label>
+      <label>KIC j'band Magnitude
+        <span class="tooltip" title="Magnitude of the star measured in the J band filter.">?</span>
+        <input type="number" name="kic_j_magnitude" placeholder="e.g., 12.0" step="0.01" min="0">
+      </label>
+      <label>KIC h'band Magnitude
+        <span class="tooltip" title="Magnitude of the star measured in the H band filter.">?</span>
+        <input type="number" name="kic_h_magnitude" placeholder="e.g., 12.0" step="0.01" min="0">
+      </label>
+      <label>KIC k'band Magnitude
+        <span class="tooltip" title="Magnitude of the star measured in the K band filter.">?</span>
+        <input type="number" name="kic_k_magnitude" placeholder="e.g., 12.0" step="0.01" min="0">
+      </label>
+
+
+    </fieldset>
+  </section>
+</div>
+
     
 <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
