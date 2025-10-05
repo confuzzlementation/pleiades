@@ -3,7 +3,7 @@ The current model was trained with a GBT (Gradient Boosted Trees) ML algorithm. 
 
 ![main.py](image.png)
 
-This ran over the course of 12 hours, and with our most effective and optimal set of parameters, we got an Area Under Curve of 0.970 and accuracy of 90.4%.
+This ran over the course of 12 hours, and with our most effective and optimal set of parameters, we got an Area Under Curve of 0.970 and accuracy of 90.4% when testing against the provided `data.csv` file.
 
 ![searching!](image-1.png)
 
