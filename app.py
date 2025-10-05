@@ -8,16 +8,10 @@ from flask import render_template
 from flask import jsonify
 from flask import request
 import pickle
+import pandas as pd
 
-# # Use pickle to load in the pre-trained model.
-# with open(f'model/movie_reviews_sentiment_analysis.pkl', 'rb') as f: # need to change to our file
-#     model = pickle.load(f)
+# Use pickle to load in the pre-trained model.
 
-# # Use pickle to load in vectorizer.
-# with open(f'model/vectorizer.pkl', 'rb') as f:
-#     vectorizer = pickle.load(f)
-
-#alesha you stupid gremlin
 
 app = Flask(__name__)
 CORS(app)
@@ -39,6 +33,7 @@ def displayModel():
     if request.method == "GET":
         return render_template("model.html")
     if request.method == "POST":
+        model = model_manager.load_model()
         max_depth = request.form["max_depth"]
         min_child_weight = request.form["min_child_weight"]
         learning_rate = request.form["learning_rate"]
@@ -60,8 +55,12 @@ def displayModel():
         limb_darkening_1 = request.form["limb_darkening_1"]
         limb_darkening_2 = request.form["limb_darkening_2"]
 
-        result = model.predict(vectorizer.transform([max_depth, min_child_weight, learning_rate, subsample, colsample_bytree, alpha, lmbda, orbital_period, transit_epoch, impact_parameter, transit_duration_hours, transit_depth_ppm, planet_star_ratio, stellar_density, planet_radius, semi_major_axis, inclination, insolation_flux, limb_darkening_1, limb_darkening_2]))
-        return(flask.render_template('model.html', result=result))
+
+        input_variables = pd.DataFrame([[max_depth, min_child_weight, learning_rate, subsample, colsample_bytree, alpha, lmbda, orbital_period, transit_epoch, impact_parameter, transit_duration_hours, transit_depth_ppm, planet_star_ratio, stellar_density, planet_radius, semi_major_axis, inclination, insolation_flux, limb_darkening_1, limb_darkening_2]],
+        columns=['max_depth', 'min_child_weight', 'learning_rate', 'subsample', 'colsample_bytree', 'alpha', 'lmbda', 'orbital_period', 'transit_epoch', 'impact_parameter', 'transit_duration_hours', 'transit_depth_ppm', 'planet_star_ratio', 'stellar_density', 'planet_radius', 'semi_major_axis', 'inclination', 'insolation_flux', 'limb_darkening_1', 'limb_darkening_2'], dtype=float, index=['input'])
+        prediction = model.predict(input_variables)[0]
+        print(prediction)
+        return(flask.render_template('model.html'))
         # etc. do ^^ for whichever other parameters we end up using
         # return(flask.render_template('main.html', predict_text=predict_text, movie=movie, result=prediction))
         """ 

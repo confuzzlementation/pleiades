@@ -3,6 +3,7 @@ import pandas as pd
 import xgboost as xgb
 import numpy as np
 import matplotlib as mpl
+import pickle as pkl
 
 data = pd.read_csv("data.csv").drop("koi_time0", axis=1)
 groups = data["kepid"]
@@ -29,6 +30,8 @@ params = {
     "min_child_weight": 2
 }
 
+
+
 results = xgb.cv(
     dtrain=dmatrix,
     params=params,
@@ -40,4 +43,4 @@ results = xgb.cv(
     seed=123,
 )
 
-print(1-results["test-error-mean"].iloc[-1])
+print(results["test-error-mean"].iloc[-1])
