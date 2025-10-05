@@ -63,7 +63,7 @@ def objective(trial):
             params["scale_pos_weight"] = 1.0
 
         callbacks=[
-            EarlyStopping(rounds=300, save_best=True),
+            EarlyStopping(rounds=500, save_best=True),
             XGBoostPruningCallback(trial, "validation_0-auc")
         ]
         model = xgb.XGBClassifier(**params, n_jobs=1, callbacks=callbacks, verbosity=0)
@@ -83,7 +83,7 @@ def objective(trial):
 
     return sum(aucs) / len(aucs)
 
-study = optuna.create_study(direction="maximize", sampler=optuna.samplers.TPESampler(seed=123, multivariate=True, group=True), pruner=optuna.pruners.SuccessiveHalvingPruner(reduction_factor=3, min_resource=100))
+study = optuna.create_study(direction="maximize", sampler=optuna.samplers.TPESampler(seed=123, multivariate=True, group=True), pruner=optuna.pruners.SuccessiveHalvingPruner(reduction_factor=3, min_resource=250))
 study.optimize(objective, n_trials= 50, show_progress_bar=True)
 
 print("Best parameters:", study.best_params)
