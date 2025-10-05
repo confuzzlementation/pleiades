@@ -16,7 +16,6 @@ class ModelManager:
     def train_and_save_model(self):
         with self.lock:
             data = pd.read_csv("data.csv")
-            groups = data["kepid"]
             data = data.replace("CANDIDATE", 1).replace("FALSE POSITIVE", 0)
             X, Y = data.iloc[:, :-1], data.iloc[:, -1]
 
