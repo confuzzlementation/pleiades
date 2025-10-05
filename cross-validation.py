@@ -4,7 +4,7 @@ import xgboost as xgb
 import numpy as np
 import matplotlib as mpl
 
-data = pd.read_csv("data.csv")
+data = pd.read_csv("data.csv").drop("koi_time0", axis=1)
 groups = data["kepid"]
 
 data = data.replace("CANDIDATE", 1).replace("FALSE POSITIVE", 0).drop("kepid", axis=1)
@@ -18,7 +18,6 @@ folds = list(sgkf.split(X=X, y=Y, groups=groups))
 
 dmatrix = xgb.DMatrix(data=X, label=Y)
 params = {
-    "booster": "dart",
     "objective": "binary:logistic",
     "max_depth": 16,
     "learning_rate": 0.0065871201940497885,
@@ -36,9 +35,9 @@ results = xgb.cv(
     folds=folds,
     num_boost_round=2576,
     early_stopping_rounds=150,
-    metrics="auc",
+    metrics="error",
     as_pandas=True,
     seed=123,
 )
 
-print(results["test-auc-mean"].iloc[-1])
+print(1-results["test-error-mean"].iloc[-1])

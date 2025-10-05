@@ -15,7 +15,7 @@ class ModelManager:
 
     def train_and_save_model(self):
         with self.lock:
-            data = pd.read_csv("data.csv")
+            data = pd.read_csv("data.csv").drop("koi_time0", axis=1)
             data = data.replace("CANDIDATE", 1).replace("FALSE POSITIVE", 0)
             X, Y = data.iloc[:, :-1], data.iloc[:, -1]
 
@@ -25,9 +25,14 @@ class ModelManager:
 
             params = {
                 "objective": "binary:logistic",
-                "max_depth": 50,
-                "learning_rate": 0.50,
-                "alpha": 5,
+                "max_depth": 16,
+                "learning_rate": 0.0065871201940497885,
+                "reg_alpha": 1.2833158015123136,
+                "reg_lambda": 0.7421885850676595,
+                "gamma": 0.48389372530923047,
+                "subsample": 0.8360643402670199,
+                "colsample_bytree": 0.4911275665288193,
+                "min_child_weight": 2,
             }
 
             self.model = xgb.train(params=params, dtrain=dmatrix, num_boost_round=1000, early_stopping_rounds=500)
