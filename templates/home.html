@@ -25,29 +25,51 @@
         <section class="slide glass" id="section1">
             <h1>Challenge Information</h1>
             <p>
-                NASA missions like Kepler, TESS, and K2 have discovered so much outside of our solar system.
-                However, identifying these objects is slow, requiring scientists to sift through mountains of data.
-                We are changing this: training an ML model on publicly available datasets, we make exoplanet
-                identification and classification accessible and efficient to everybody.
+                NASA missions like Kepler and TESS have discovered many exoplanets, but sifting through the vast
+                datasets is time-consuming, hindering rapid identification and classification. We are
+                developing a machine learning model using publicly available data to automate and accelerate the
+                discovery and classification of exoplanets, making this process more efficient and accessible
+                to everyone.
             </p>
             <div class="arrow left" id="prevArrow1">←</div>
             <div class="arrow right" id="nextArrow1">→</div>
         </section>
 
         <section class="slide glass" id="section2">
-            <h1>Our Model</h1>
-            <p></p>
+            <img src="icons/exoplanet.webp">
+            <h1>What is an Exoplanet?</h1>
+            <p>
+                An exoplanet is a planet that exists outside of our solar system; meaning it orbits a star other
+                than the Sun. While most exoplanets are found orbiting stars, some roam freely through space
+                without being gravitationally bound to any star, and are called "rogue planets". As of today,
+                NASA has confirmed the existence of over 6,000 exoplanets.
+            </p>
             <div class="arrow left" id="prevArrow2">←</div>
             <div class="arrow right" id="nextArrow2">→</div>
         </section>
 
         <section class="slide glass" id="section3">
-            <img src="icons/exoplanet.webp">
+            <h1>Our Model</h1>
+            <p>
+                Machine learning (ML) is a subfield of artificial intelligence (AI) focused on enabling systems
+                to learn from data and improve performance on specific tasks without explicit programming.
+                Our current ML system utilizes a Gradient Boosting Classifier, which enhances accuracy by
+                sequentially combining predictions from multiple weaker decision trees. Our model, developed
+                using this system and trained on NASA data, has achieved an accuracy of 90.4%.
+            </p>
+            <div class="arrow left" id="prevArrow3">←</div>
+            <div class="arrow right" id="nextArrow3">→</div>
         </section>
 
         <section class="slide glass" id="section4">
-            <h1>Future Plans</h1>
-            <p>More ML improvements, interactive visualizations, and accessibility for everyone.</p>
+            <h1>How does this Model Work?</h1>
+            <p>
+                The ML problem for this challenge, the binary classification of planets as either candidates for
+                being exoplanets or as false positives, involves the model handling tabular data. Historically,
+                Gradient Boosted Decision Tree (GBDT) has been the one of the best options for such cases,
+                winning multiple Kaggle competitions with problems similar in nature and beating deep neural
+                networks such as CNN (Convolutional Neural Network). 
+            </p>
             <div class="arrow left" id="prevArrow4">←</div>
             <div class="arrow right" id="nextArrow4">→</div>
         </section>
