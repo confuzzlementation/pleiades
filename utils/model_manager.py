@@ -4,7 +4,6 @@ import pickle
 import os
 from threading import Lock
 
-
 class ModelManager:
     def __init__(self):
         self.model = None
