@@ -20,6 +20,18 @@ app.register_blueprint(model_bp, url_prefix="/api")
 def displayHome():
     return render_template("home.html")
 
+@app.route('/model', methods=['GET'])
+def displayModel():
+    return render_template("model.html")
+
+# @app.route("/adv", methods=["GET"])
+# def displayAdvancedModel():
+#     return render_template("advmodel.html")
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
 @app.route("/health", methods=["GET"])
 def health_check():
     from flask import jsonify
@@ -32,4 +44,4 @@ def health_check():
 if __name__ == "__main__":
     model_manager.load_model()
 
-    app.run(debug=True, host="0.0.0.0", port=5000)
+    app.run(debug=True, host="0.0.0.0", port=3300)

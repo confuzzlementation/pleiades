@@ -1,34 +1,42 @@
 /* individual elements */
 #teamLogo {
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    float: left;
+    padding: 5px;
+    padding-left: 10px;
 }
 
 /* #menuContainer {
-    background-color: var(--background-colour);
-}
-
-#menuContainer:hover {
-    background-color: var(--orange);
-}
-
-#menu {
-    color: var(--text-colour);
-    float: right;
+    color: var(--text);
 } */
 
+/* #menuContainer:hover {
+    background-color: var(--hg);
+} */
+
+#menu {
+    color: var(--text);
+    float: right;
+}
+
 /* classes */
+.topnav {
+    position: sticky;
+    top: 0;
+    overflow: hidden;
+}
+
 .topnav a {
   display: block;
   text-align: center;
   padding: 14px;
   text-decoration: none;
   float: right;
-  position: sticky;
-  top: 0;
-  /* overflow: hidden; */
-  background-color: var(--bg);
-  /* z-index: 100; */
+  /* position: sticky; */
+  /* top: 0; */
+  overflow: hidden;
+  /* background-color: var(--bg); */
+  z-index: 100;
 }
 
 .topnav a:hover {
@@ -43,12 +51,12 @@
 
 .topnav .icon {
     display: none;
-    height: 21px;
+    /* height: 21px; */
 }
 
 /* conditionals */
 @media screen and (max-width: 500px) {
-    .topnav a:not(.active) {display: none;}
+    .topnav a:not(.curr) {display: none;}
     .topnav a.icon {
         display: block;
         float: right;
