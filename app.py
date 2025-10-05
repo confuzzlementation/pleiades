@@ -10,19 +10,18 @@ from flask import request
 import pickle
 
 # # Use pickle to load in the pre-trained model.
-# with open(f'model/movie_reviews_sentiment_analysis.pkl', 'rb') as f: # need to change to our file
-#     model = pickle.load(f)
+with open(f'gdbtmodel.pkl', 'rb') as f: # need to change to our file
+    model = pickle.load(f)
 
 # # Use pickle to load in vectorizer.
 # with open(f'model/vectorizer.pkl', 'rb') as f:
-#     vectorizer = pickle.load(f)
-
-#alesha you stupid gremlin
+#     vectorizer = pickle.loa
 
 app = Flask(__name__)
 CORS(app)
 
 model_manager = ModelManager()
+model = joblib.load('xgboost_model.pkl')
 
 app.config["MODEL_MANAGER"] = model_manager
 
