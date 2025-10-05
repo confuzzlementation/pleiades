@@ -26,7 +26,7 @@ def displayHome():
 @app.route("/model", methods=["GET", "POST"])
 def displayModel():
     if flask.request.method == "GET":
-        return render_template("main.html")
+        return render_template("model.html")
     if flask.request.method == "POST":
         max_depth = flask.request.form["max_depth"]
         # etc. do ^^ for whichever other parameters we end up using
@@ -59,6 +59,7 @@ def health_check():
     return jsonify(
         {"status": "healthy", "model_loaded": model_manager.model is not None}
     )
+
 
 
 if __name__ == "__main__":
