@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Team Pleiades Exoplanet Detection ML Model.">
-    <title> Pleiades ML Model </title>
+    <title>Pleiades ML Model</title>
     <link rel="icon" href="static/icons/favicon.ico" type="image/icon type">
     <link rel="stylesheet" href="static/css/root.css">
     <link rel="stylesheet" href="static/css/base.css">
@@ -13,221 +13,201 @@
     <link rel="stylesheet" href="static/css/space.css">
 </head>
 <body>
-    <div id="particles-js"></div>
-    <div id="navbar" class="topnav">
-        <img src="static/icons/favicon.png" id="teamLogo">
-        <!-- <a href="adv" id="adv">Advanced Model</a> -->
-        <a href="model" id="model" class="curr">Model</a>
-        <a href="/" id="home">Home</a>
-        
-        <a href="javascript:void(0);" id="menuContainer" class="icon">☰</a>
-    </div>
-    <hr>
+<div id="particles-js"></div>
 
-    <button onclick="displayPopup()" id="openSettings"><box-icon name="cog" class="icon"></box-icon></button>
-    
+<div id="navbar" class="topnav">
+    <img src="static/icons/favicon.png" id="teamLogo">
+    <a href="model" id="model" class="curr">Model</a>
+    <a href="/" id="home">Home</a>
+    <a href="javascript:void(0);" id="menuContainer" class="icon">☰</a>
+</div>
+<hr>
+
+<button onclick="displayPopup()" id="openSettings">
+    <box-icon name="cog" class="icon"></box-icon>
+</button>
 
 <div id="popUp" class="modal">
-  <form class="modal-content animate" method="post">
-    <div class="container">
-      <h2>Settings</h2>
+    <form class="modal-content animate" method="post">
+        <div class="container">
+            <h2>Settings</h2>
 
-      <fieldset>
-        <legend>Tree Parameters</legend>
-        <label>Maximum Depth
-          <span class="tooltip" title="Maximum depth of each tree. Higher values can overfit.">?</span>
-          <input type="number" name="max_depth" placeholder="1-20" min="1" max="20">
-        </label>
-        <label>Minimum Child Weight
-          <span class="tooltip" title="Minimum sum of instance weight needed in a child.">?</span>
-          <input type="number" name="min_child_weight" placeholder="1+" min="1">
-        </label>
-      </fieldset>
+            <fieldset class="collapsible">
+                <legend>Tree Parameters</legend>
+                <div class="fieldset-content">
+                    <label>Maximum Depth
+                        <span class="tooltip" title="Maximum depth of each tree. Higher values can overfit.">?</span>
+                        <input type="number" name="max_depth" placeholder="1-20" min="1" max="20">
+                    </label>
+                    <label>Minimum Child Weight
+                        <span class="tooltip" title="Minimum sum of instance weight needed in a child.">?</span>
+                        <input type="number" name="min_child_weight" placeholder="1+" min="1">
+                    </label>
+                </div>
+            </fieldset>
 
-      <fieldset>
-        <legend>Learning Parameters</legend>
-        <label>Learning Rate
-          <span class="tooltip" title="Step size shrinkage to prevent overfitting. 0.01-1.">?</span>
-          <input type="number" name="learning_rate" placeholder="0.01 - 1" step="0.01" min="0" max="1">
-        </label>
-        <label>Subsample
-          <span class="tooltip" title="Fraction of training data used for each tree. 0.1-1.">?</span>
-          <input type="number" name="subsample" placeholder="0.1 - 1" step="0.05" min="0.1" max="1">
-        </label>
-        <label>Columns per Tree
-          <span class="tooltip" title="Fraction of columns used per tree. 0.1-1.">?</span>
-          <input type="number" name="colsample_bytree" placeholder="0.1 - 1" step="0.05" min="0.1" max="1">
-        </label>
-      </fieldset>
+            <fieldset class="collapsible">
+                <legend>Learning Parameters</legend>
+                <div class="fieldset-content">
+                    <label>Learning Rate
+                        <span class="tooltip" title="Step size shrinkage to prevent overfitting. 0.01-1.">?</span>
+                        <input type="number" name="learning_rate" placeholder="0.01 - 1" step="0.01" min="0" max="1">
+                    </label>
+                    <label>Subsample
+                        <span class="tooltip" title="Fraction of training data used for each tree. 0.1-1.">?</span>
+                        <input type="number" name="subsample" placeholder="0.1 - 1" step="0.05" min="0.1" max="1">
+                    </label>
+                    <label>Columns per Tree
+                        <span class="tooltip" title="Fraction of columns used per tree. 0.1-1.">?</span>
+                        <input type="number" name="colsample_bytree" placeholder="0.1 - 1" step="0.05" min="0.1" max="1">
+                    </label>
+                </div>
+            </fieldset>
 
-      <fieldset>
-        <legend>Regularization</legend>
-        <label>Alpha (α)
-          <span class="tooltip" title="L1 regularization term on weights. 0+">?</span>
-          <input type="number" name="alpha" placeholder="0.0+" step="0.01" min="0">
-        </label>
-        <label>Lambda (λ)
-          <span class="tooltip" title="L2 regularization term on weights. 0+">?</span>
-          <input type="number" name="lambda" placeholder="0.0+" step="0.01" min="0">
-        </label>
-      </fieldset>
+            <fieldset class="collapsible">
+                <legend>Regularization</legend>
+                <div class="fieldset-content">
+                    <label>Alpha (α)
+                        <span class="tooltip" title="L1 regularization term on weights. 0+">?</span>
+                        <input type="number" name="alpha" placeholder="0.0+" step="0.01" min="0">
+                    </label>
+                    <label>Lambda (λ)
+                        <span class="tooltip" title="L2 regularization term on weights. 0+">?</span>
+                        <input type="number" name="lambda" placeholder="0.0+" step="0.01" min="0">
+                    </label>
+                </div>
+            </fieldset>
 
-      <div class="modal-buttons">
-        <button type="button" onclick="closePopup()" class="cancel">Cancel</button>
-        <button type="submit" class="save">Save Settings</button>
-      </div>
-    </div>
-  </form>
+            <div class="modal-buttons">
+                <button type="button" onclick="closePopup()" class="cancel">Cancel</button>
+                <button type="submit" class="save">Save Settings</button>
+            </div>
+        </div>
+    </form>
 </div>
 
+<div id="featuresForm">
+    <section id="featuresInput" class="features-grid">
 
-<div id="featuresForm" class="horizontal-container">
-  <section id="featuresInput">
-    <fieldset>
-      <legend>Transit Properties</legend>
-      <label>Orbital Period (days)
-        <span class="tooltip" title="Depth of the transit in parts per million (ppm).">?</span>
-        <input type="number" name="transit_depth" placeholder="e.g., 500" step="1" min="0">
-      </label>
-      <label>Transit Epoch (BJD - 2454900)
-        <span class="tooltip" title="Duration of the transit in hours.">?</span>
-        <input type="number" name="transit_duration" placeholder="e.g., 2.5" step="0.01" min="0">
-      </label>
-      <label>Impact Parameter
-        <span class="tooltip" title="Impact parameter of the transit.">?</span>
-        <input type="number" name="impact_parameter" placeholder="e.g., 0.5" step="0.01" min="0">
-      </label>
-      <label>Transit Duration (hours)
-        <span class="tooltip" title="Duration of the transit in hours.">?</span>
-        <input type="number" name="transit_duration" placeholder="e.g., 2.5" step="0.01" min="0">
-      </label>
-      <label>Transit Depth (ppm)
-        <span class="tooltip" title="Depth of the transit in parts per million (ppm).">?</span>
-        <input type="number" name="transit_depth" placeholder="e.g., 500" step="1" min="0">
-      </label>
-      <label>Planet-Star Radius Ratio 
-        <span class="tooltip" title="Planet radius divided by stellar radius.">?</span>
-        <input type="number" name="ps_rr" placeholder="e.g., 0.02" step="0.01" min="0">
-      </label>
-      <label>Fitted Stellar Density (g/cm³)
-        <span class="tooltip" title="">?</span>
-        <input type="number" name="stellar_density" placeholder="e.g., 15.0" step="0.1" min="0">
-      </label>
-      <label>Planetary Radius (Earth radii)
-        <span class="tooltip" title="Estimated planet radius in Earth radii.">?</span>
-        <input type="number" name="planet_radius" placeholder="e.g., 2.0" step="0.1" min="0">
-      </label>
-      <label>Orbit Semi-Major Axis (AU)
-        <span class="tooltip" title="Estimated semi-major axis of the orbit in AU.">?</span>
-        <input type="number" name="semi_major_axis" placeholder="e.g., 0.05" step="0.01" min="0">
-      </label>
-      <label>Inclination (degrees)
-        <span class="tooltip" title="Inclination of the orbit in degrees.">?</span>
-        <input type="number" name="inclination" placeholder="e.g., 89.5" step="0.01" min="0" max="90">
-      </label>
-      <label>Insolation Flux (Earth flux)
-        <span class="tooltip" title="Estimated insolation flux in Earth flux units.">?</span>
-        <input type="number" name="insolation_flux" placeholder="e.g., 100" step="1" min="0">
-      </label>
-      <label> Limb Darkening Coefficent 1 
-        <span class="tooltip" title="Limb darkening coefficient u1.">?</span>
-        <input type="number" name="limb_darkening_1" placeholder="e.g., 0.3" step="0.01" min="0" max="1">
-      </label>
-      <label> Limb Darkening Coefficent 2 
-        <span class="tooltip" title="Limb darkening coefficient u2.">?</span>
-        <input type="number" name="limb_darkening_2" placeholder="e.g., 0.2" step="0.01" min="0" max="1">
-      </label>
-    </fieldset>
+        <!-- Transit Properties -->
+        <fieldset class="collapsible">
+            <legend>Transit Properties</legend>
+            <div class="fieldset-content">
+                <label>Orbital Period (days)<span class="tooltip" title="Period of the planet's orbit in days.">?</span>
+                    <input type="number" name="orbital_period" placeholder="e.g., 10.5" step="0.01" min="0">
+                </label>
+                <label>Transit Epoch (BJD - 2454900)<span class="tooltip" title="Midpoint of the first transit.">?</span>
+                    <input type="number" name="transit_epoch" placeholder="e.g., 123.456" step="0.001" min="0">
+                </label>
+                <label>Impact Parameter<span class="tooltip" title="Distance from the center of the stellar disk. 0=central transit.">?</span>
+                    <input type="number" name="impact_parameter" placeholder="e.g., 0.5" step="0.01" min="0" max="1">
+                </label>
+                <label>Transit Duration (hours)<span class="tooltip" title="Duration of the transit event.">?</span>
+                    <input type="number" name="transit_duration_hours" placeholder="e.g., 2.5" step="0.01" min="0">
+                </label>
+                <label>Transit Depth (ppm)<span class="tooltip" title="Depth of the transit in parts per million.">?</span>
+                    <input type="number" name="transit_depth_ppm" placeholder="e.g., 500" step="1" min="0">
+                </label>
+                <label>Planet-Star Radius Ratio<span class="tooltip" title="Radius of planet divided by radius of star.">?</span>
+                    <input type="number" name="planet_star_ratio" placeholder="e.g., 0.02" step="0.01" min="0" max="1">
+                </label>
+                <label>Stellar Density (g/cm³)<span class="tooltip" title="Estimated stellar density.">?</span>
+                    <input type="number" name="stellar_density" placeholder="e.g., 1.41" step="0.01" min="0">
+                </label>
+                <label>Planet Radius (Earth radii)<span class="tooltip" title="Estimated radius of the planet in Earth radii.">?</span>
+                    <input type="number" name="planet_radius" placeholder="e.g., 2.0" step="0.1" min="0">
+                </label>
+                <label>Semi-Major Axis (AU)<span class="tooltip" title="Average distance from star in AU.">?</span>
+                    <input type="number" name="semi_major_axis" placeholder="e.g., 0.05" step="0.01" min="0">
+                </label>
+                <label>Inclination (degrees)<span class="tooltip" title="Orbital inclination. 90 = edge-on.">?</span>
+                    <input type="number" name="inclination" placeholder="e.g., 89.5" step="0.01" min="0" max="90">
+                </label>
+                <label>Insolation Flux (Earth flux)<span class="tooltip" title="Stellar flux received by the planet relative to Earth.">?</span>
+                    <input type="number" name="insolation_flux" placeholder="e.g., 100" step="1" min="0">
+                </label>
+                <label>Limb Darkening u1<span class="tooltip" title="Linear limb darkening coefficient.">?</span>
+                    <input type="number" name="limb_darkening_1" placeholder="0.3" step="0.01" min="0" max="1">
+                </label>
+                <label>Limb Darkening u2<span class="tooltip" title="Quadratic limb darkening coefficient.">?</span>
+                    <input type="number" name="limb_darkening_2" placeholder="0.2" step="0.01" min="0" max="1">
+                </label>
+            </div>
+        </fieldset>
 
-    <fieldset>
-      <legend>Threshold-Crossing Event (TCE)</legend>
-      <label>Maximum Single Event Statistic
-        <span class="tooltip" title="Maximum single event statistic (SES) value.">?</span>
-        <input type="number" name="max_ses" placeholder="e.g., 10.0" step="0.1" min="0">
-      </label>
-      <label>Maximum Multiple Event Statistic
-        <span class="tooltip" title="Multiple event statistic (MES) value.">?</span>
-        <input type="number" name="mes" placeholder="e.g., 15.0" step="0.1" min="0">
-      </label>
-      <label>Transit Signal-to-Noise Ratio
-        <span class="tooltip" title="Transit Signal-to-Noise ratio of the detection.">?</span>
-        <input type="number" name="snr" placeholder="e.g., 12.0" step="0.1" min="0">
-      </label>
-      <label>Odd-Even Transit Depth
-        <span class="tooltip" title="Ratio of odd to even transit depths.">?</span>
-        <input type="number" name="odd_even_depth" placeholder="e.g., 1.0" step="0.01" min="0">
-      </label>
-      <label>Stellar Effective Temperature (Kelvin)
-        <span class="tooltip" title="Effective temperature of the host star in Kelvin.">?</span>
-        <input type="number" name="stellar_temp" placeholder="e.g., 5500" step="1" min="0">
-      </label>
-      <label>Stellar Surface Gravity (log10(cms^-2))
-        <span class="tooltip" title="Logarithm of the stellar surface gravity in cm/s².">?</span>
-        <input type="number" name="stellar_logg" placeholder="e.g., 4.5" step="0.01" min="0">
-      </label>
-      <label>Stellar Metallicity 
-        <span class="tooltip" title="Metallicity of the star in dex.">?</span>
-        <input type="number" name="stellar_metallicity" placeholder="e.g., 0.0" step="0.01">
-      </label>
-      <label>Stellar Radius (Solar radii)
-        <span class="tooltip" title="Radius of the host star in Solar radii.">?</span>
-        <input type="number" name="stellar_radius" placeholder="e.g., 1.0" step="0.01" min="0">
-      </label>
-      <label>Stellar Mass (Solar masses)
-        <span class="tooltip" title="Mass of the host star in Solar masses.">?</span>
-        <input type="number" name="stellar_mass" placeholder="e.g., 1.0" step="0.01" min="0">
-      </label>
-    </fieldset>
+        <!-- TCE -->
+        <fieldset class="collapsible">
+            <legend>Threshold-Crossing Event (TCE)</legend>
+            <div class="fieldset-content">
+                <label>Max Single Event Statistic<span class="tooltip" title="Maximum single event statistic (SES).">?</span>
+                    <input type="number" name="max_ses" placeholder="e.g., 10.0" step="0.1" min="0">
+                </label>
+                <label>Max Multiple Event Statistic<span class="tooltip" title="Maximum multiple event statistic (MES).">?</span>
+                    <input type="number" name="max_mes" placeholder="e.g., 15.0" step="0.1" min="0">
+                </label>
+                <label>Transit SNR<span class="tooltip" title="Transit signal-to-noise ratio.">?</span>
+                    <input type="number" name="transit_snr" placeholder="e.g., 12.0" step="0.1" min="0">
+                </label>
+                <label>Odd-Even Transit Depth Ratio<span class="tooltip" title="Ratio of odd to even transit depths.">?</span>
+                    <input type="number" name="odd_even_depth" placeholder="e.g., 1.0" step="0.01" min="0">
+                </label>
+                <label>Stellar Temp (K)<span class="tooltip" title="Effective temperature of the star.">?</span>
+                    <input type="number" name="stellar_temp" placeholder="e.g., 5500" step="1" min="0">
+                </label>
+                <label>Stellar log(g)<span class="tooltip" title="Logarithm of surface gravity.">?</span>
+                    <input type="number" name="stellar_logg" placeholder="e.g., 4.5" step="0.01" min="0">
+                </label>
+                <label>Stellar Metallicity [Fe/H]<span class="tooltip" title="Metallicity of the star.">?</span>
+                    <input type="number" name="stellar_metallicity" placeholder="0.0" step="0.01">
+                </label>
+                <label>Stellar Radius (R☉)<span class="tooltip" title="Radius of the star in solar radii.">?</span>
+                    <input type="number" name="stellar_radius" placeholder="1.0" step="0.01" min="0">
+                </label>
+                <label>Stellar Mass (M☉)<span class="tooltip" title="Mass of the star in solar masses.">?</span>
+                    <input type="number" name="stellar_mass" placeholder="1.0" step="0.01" min="0">
+                </label>
+            </div>
+        </fieldset>
 
-    <fieldset>
-      <legend>KIC Parameters</legend>
-      <label>RA (degrees)
-        <span class="tooltip" title="KIC Right Ascension.">?</span>
-        <input type="number" name="right_ascension" placeholder="e.g., 12.0" step="0.01" min="0">
-      </label>
-      <label>Dec (degrees)
-        <span class="tooltip" title="KIC Declination.">?</span>
-        <input type="number" name="kic_declination" placeholder="e.g., 10.0" step="0.01" min="-90" max="90">
-      </label>
-      <label>Kepler-band (mag)
-        <span class="tooltip" title="Magnitude of the star measured in the kepler Telescope's scpecific broadband filter.">?</span>
-        <input type="number" name="kepler_magnitude" placeholder="e.g., 12.0" step="0.01" min="0">
-      </label>
-      <label>KIC g'band Magnitude
-        <span class="tooltip" title="Magnitude of the star measured in the g' band filter.">?</span>
-        <input type="number" name="kic_g_magnitude" placeholder="e.g., 12.0" step="0.01" min="0">
-      </label>
-      <label>KIC r'band Magnitude
-        <span class="tooltip" title="Magnitude of the star measured in the r' band filter.">?</span>
-        <input type="number" name="kic_r_magnitude" placeholder="e.g., 12.0" step="0.01" min="0">
-      </label>
-      <label>KIC i'band Magnitude
-        <span class="tooltip" title="Magnitude of the star measured in the i' band filter.">?</span>
-        <input type="number" name="kic_i_magnitude" placeholder="e.g., 12.0" step="0.01" min="0">
-      </label>
-      <label>KIC z'band Magnitude
-        <span class="tooltip" title="Magnitude of the star measured in the z' band filter.">?</span>
-        <input type="number" name="kic_z_magnitude" placeholder="e.g., 12.0" step="0.01" min="0">
-      </label>
-      <label>KIC j'band Magnitude
-        <span class="tooltip" title="Magnitude of the star measured in the J band filter.">?</span>
-        <input type="number" name="kic_j_magnitude" placeholder="e.g., 12.0" step="0.01" min="0">
-      </label>
-      <label>KIC h'band Magnitude
-        <span class="tooltip" title="Magnitude of the star measured in the H band filter.">?</span>
-        <input type="number" name="kic_h_magnitude" placeholder="e.g., 12.0" step="0.01" min="0">
-      </label>
-      <label>KIC k'band Magnitude
-        <span class="tooltip" title="Magnitude of the star measured in the K band filter.">?</span>
-        <input type="number" name="kic_k_magnitude" placeholder="e.g., 12.0" step="0.01" min="0">
-      </label>
-
-
-    </fieldset>
-  </section>
+        <!-- KIC -->
+        <fieldset class="collapsible">
+            <legend>KIC Parameters</legend>
+            <div class="fieldset-content">
+                <label>RA (deg)<span class="tooltip" title="Right Ascension (J2000).">?</span>
+                    <input type="number" name="kic_ra" placeholder="12.0" step="0.01" min="0">
+                </label>
+                <label>Dec (deg)<span class="tooltip" title="Declination (J2000).">?</span>
+                    <input type="number" name="kic_dec" placeholder="10.0" step="0.01" min="-90" max="90">
+                </label>
+                <label>Kepler-band Mag<span class="tooltip" title="Magnitude in Kepler band.">?</span>
+                    <input type="number" name="kepler_mag" placeholder="12.0" step="0.01" min="0">
+                </label>
+                <label>KIC g' Mag<span class="tooltip" title="g' band magnitude.">?</span>
+                    <input type="number" name="kic_g_mag" placeholder="12.0" step="0.01" min="0">
+                </label>
+                <label>KIC r' Mag<span class="tooltip" title="r' band magnitude.">?</span>
+                    <input type="number" name="kic_r_mag" placeholder="12.0" step="0.01" min="0">
+                </label>
+                <label>KIC i' Mag<span class="tooltip" title="i' band magnitude.">?</span>
+                    <input type="number" name="kic_i_mag" placeholder="12.0" step="0.01" min="0">
+                </label>
+                <label>KIC z' Mag<span class="tooltip" title="z' band magnitude.">?</span>
+                    <input type="number" name="kic_z_mag" placeholder="12.0" step="0.01" min="0">
+                </label>
+                <label>KIC J Mag<span class="tooltip" title="J band magnitude.">?</span>
+                    <input type="number" name="kic_j_mag" placeholder="12.0" step="0.01" min="0">
+                </label>
+                <label>KIC H Mag<span class="tooltip" title="H band magnitude.">?</span>
+                    <input type="number" name="kic_h_mag" placeholder="12.0" step="0.01" min="0">
+                </label>
+                <label>KIC K Mag<span class="tooltip" title="K band magnitude.">?</span>
+                    <input type="number" name="kic_k_mag" placeholder="12.0" step="0.01" min="0">
+                </label>
+            </div>
+        </fieldset>
+    </section>
 </div>
 
-    
 <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 <script src="static/js/formTemplate.js"></script>

@@ -8,9 +8,19 @@ function closePopup() {
     popUp.classList.remove('show');
 }
 
-// Close when clicking outside modal content
 window.onclick = function(event) {
     if (event.target === popUp) {
         closePopup();
     }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('fieldset.collapsible').forEach(fieldset => {
+        fieldset.classList.remove('collapsed');
+        const legend = fieldset.querySelector('legend');
+        legend.addEventListener('click', () => {
+            fieldset.classList.toggle('collapsed');
+        });
+    });
+});
+
