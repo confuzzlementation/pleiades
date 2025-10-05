@@ -6,6 +6,16 @@ from routes.model_routes import model_bp
 from utils.model_manager import ModelManager
 from flask import render_template
 from flask import jsonify
+from flask import request
+import pickle
+
+# Use pickle to load in the pre-trained model.
+with open(f'model/movie_reviews_sentiment_analysis.pkl', 'rb') as f: # need to change to our file
+    model = pickle.load(f)
+
+# Use pickle to load in vectorizer.
+with open(f'model/vectorizer.pkl', 'rb') as f:
+    vectorizer = pickle.load(f)
 
 app = Flask(__name__)
 CORS(app)
@@ -17,7 +27,6 @@ app.config["MODEL_MANAGER"] = model_manager
 app.register_blueprint(prediction_bp, url_prefix="/api")
 app.register_blueprint(model_bp, url_prefix="/api")
 
-
 @app.route("/", methods=["GET"])
 def displayHome():
     return render_template("home.html")
@@ -25,10 +34,32 @@ def displayHome():
 
 @app.route("/model", methods=["GET", "POST"])
 def displayModel():
-    if flask.request.method == "GET":
+    if request.method == "GET":
         return render_template("model.html")
-    if flask.request.method == "POST":
-        max_depth = flask.request.form["max_depth"]
+    if request.method == "POST":
+        max_depth = request.form["max_depth"]
+        min_child_weight = request.form["min_child_weight"]
+        learning_rate = request.form["learning_rate"]
+        subsample = request.form["subsample"]
+        colsample_bytree = request.form["colsample_bytree"]
+        alpha = request.form["alpha"]
+        lmbda = request.form["lambda"]
+        orbital_period = request.form["orbital_period"]
+        transit_epoch = request.form["transit_epoch"]
+        impact_parameter = request.form["impact_parameter"]
+        transit_duration_hours = request.form["transit_duration_hours"]
+        transit_depth_ppm = request.form["transit_depth_ppm"]
+        planet_star_ratio = request.form["planet_star_ratio"]
+        stellar_density = request.form["stellar_density"]
+        planet_radius = request.form["planet_radius"]
+        semi_major_axis = request.form["semi_major_axis"]
+        inclination = request.form["inclination"]
+        insolation_flux = request.form["insolation_flux"]
+        limb_darkening_1 = request.form["limb_darkening_1"]
+        limb_darkening_2 = request.form["limb_darkening_2"]
+
+        prediction = model.predict(vectorizer.transform([review]))
+        return(flask.render_template('main.html', result=result))
         # etc. do ^^ for whichever other parameters we end up using
         # return(flask.render_template('main.html', predict_text=predict_text, movie=movie, result=prediction))
         """ 
