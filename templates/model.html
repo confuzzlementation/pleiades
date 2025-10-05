@@ -205,6 +205,52 @@
                 </label>
             </div>
         </fieldset>
+
+        <!-- Uncertainties -->
+        <fieldset class="collapsible">
+            <legend>Uncertainties</legend>
+            <div class="fieldset-content">
+                <label>FW Source α (OOT) (hrs)<span class="tooltip" title="Right Ascension (J2000).">?</span>
+                    <input type="number" name="kic_ra" placeholder="12.0" step="0.01" min="0">
+                </label>
+                <label>FW Source δ (OOT) (deg)<span class="tooltip" title="Declination (J2000).">?</span>
+                    <input type="number" name="kic_dec" placeholder="10.0" step="0.01" min="-90" max="90">
+                </label>
+                <label>FW Δα (OOT) (secs)<span class="tooltip" title="Magnitude in Kepler band.">?</span>
+                    <input type="number" name="kepler_mag" placeholder="12.0" step="0.01" min="0">
+                </label>
+                <label>FW Δδ (OOT) (arcsecs)<span class="tooltip" title="g' band magnitude.">?</span>
+                    <input type="number" name="kic_g_mag" placeholder="12.0" step="0.01" min="0">
+                </label>
+                <label>FW Source Δα (OOT) (secs)<span class="tooltip" title="r' band magnitude.">?</span>
+                    <input type="number" name="kic_r_mag" placeholder="12.0" step="0.01" min="0">
+                </label>
+                <label>FW Source Δδ (OOT) (arcsecs)<span class="tooltip" title="i' band magnitude.">?</span>
+                    <input type="number" name="kic_i_mag" placeholder="12.0" step="0.01" min="0">
+                </label>
+                <label>Flux-Weighted Offset Significance (%)<span class="tooltip" title="z' band magnitude.">?</span>
+                    <input type="number" name="kic_z_mag" placeholder="12.0" step="0.01" min="0">
+                </label>
+                <label>PRF ΔαSQ (OOT) (arcsecs)<span class="tooltip" title="J band magnitude.">?</span>
+                    <input type="number" name="kic_j_mag" placeholder="12.0" step="0.01" min="0">
+                </label>
+                <label>	PRF ΔδSQ (OOT) (arcsecs)<span class="tooltip" title="H band magnitude.">?</span>
+                    <input type="number" name="kic_h_mag" placeholder="12.0" step="0.01" min="0">
+                </label>
+                <label>PRF ΔθSQ(OOT) (arcsecs)<span class="tooltip" title="K band magnitude.">?</span>
+                    <input type="number" name="kic_k_mag" placeholder="12.0" step="0.01" min="0">
+                </label>
+                <label>PRF ΔαSQ (KIC) (arcsecs)<span class="tooltip" title="i' band magnitude.">?</span>
+                    <input type="number" name="kic_i_mag" placeholder="12.0" step="0.01" min="0">
+                </label>
+                <label>PRF ΔδSQ(KIC) (arcsecs)<span class="tooltip" title="z' band magnitude.">?</span>
+                    <input type="number" name="kic_z_mag" placeholder="12.0" step="0.01" min="0">
+                </label>
+                <label>	PRF ΔθSQ(KIC) (arcsecs)<span class="tooltip" title="J band magnitude.">?</span>
+                    <input type="number" name="kic_j_mag" placeholder="12.0" step="0.01" min="0">
+                </label>
+            </div>
+        </fieldset>
     </section>
 </div>
 

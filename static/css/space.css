@@ -97,6 +97,11 @@ h1 {
     text-shadow: 0 0 10px #5dade2, 0 0 20px #3498db;
 }
 
+p {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
 .shooting-star {
     position: fixed;
     width: 2px;
