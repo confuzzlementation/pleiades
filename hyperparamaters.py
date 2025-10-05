@@ -84,7 +84,7 @@ def objective(trial):
     return sum(aucs) / len(aucs)
 
 study = optuna.create_study(direction="maximize", sampler=optuna.samplers.TPESampler(seed=123, multivariate=True, group=True), pruner=optuna.pruners.SuccessiveHalvingPruner(reduction_factor=3, min_resource=200))
-study.optimize(objective, n_trials= 150, show_progress_bar=True)
+study.optimize(objective, n_trials= 50, show_progress_bar=True)
 
 print("Best parameters:", study.best_params)
 print("Best CV AUC:", study.best_value)

@@ -1,0 +1,79 @@
+html, body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    perspective: 1000px;
+    background: black;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 110%;
+    height: 110%;
+    background: radial-gradient(ellipse at bottom, #0d1b2a 0%, #000000 100%);
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.2s ease-out;
+    z-index: -3;
+}
+
+#nebula-particles, #particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+#nebula-particles { z-index: -2; }
+#particles-js { z-index: -1; }
+
+.glass {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.37);
+    backdrop-filter: blur(6px);
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 800px;
+    margin: 100px auto;
+    text-align: center;
+    animation: fadeIn 2s ease;
+    position: relative;
+    z-index: 10;
+}
+
+h1 {
+    text-shadow: 0 0 10px #5dade2, 0 0 20px #3498db;
+}
+
+.shooting-star {
+    position: fixed;
+    width: 2px;
+    height: 100px;
+    background: linear-gradient(white, transparent);
+    opacity: 0.7;
+    transform: rotate(52deg);
+    animation: shoot 2s linear infinite;
+    z-index: -1;
+}
+
+@keyframes shoot {
+    from { top: 100vh; left: 0; opacity: 1; }
+    to { top: -100px; left: 100vw; opacity: 0; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes subtleGlow {
+    from { opacity: 0.85; filter: brightness(1); }
+    to { opacity: 1; filter: brightness(1.2); }
+}

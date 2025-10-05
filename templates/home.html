@@ -1,40 +1,52 @@
-<!-- <!DOCTYPE html> -->
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Team Pleiades Exoplanet Detection ML Model.">
-    <title> Pleiades ML Model </title>
+    <title>Pleiades ML Model</title>
     <link rel="icon" href="static/icons/favicon.ico" type="image/icon type">
     <link rel="stylesheet" href="static/css/root.css">
     <link rel="stylesheet" href="static/css/base.css">
     <link rel="stylesheet" href="static/css/navbar.css">
+    <link rel="stylesheet" href="static/css/space.css">
 </head>
 <body>
+    <div id="particles-js"></div>
     <div id="navbar" class="topnav">
         <img src="static/icons/favicon.png" id="teamLogo">
-        <!-- <a href="adv" id="adv">Advanced Model</a> -->
         <a href="model" id="model">Model</a>
         <a href="/" id="home" class="curr">Home</a>
-        
         <a href="javascript:void(0);" id="menuContainer" class="icon">☰</a>
     </div>
     <hr>
-
-    <div class="centreBox">
-        <h1> Challenge Information </h1>
-        <p>NASA missions like Kepler, TESS and K2 have discovered so much outside of our solar system. 
-            However, identifying these objects is slow, requiring scientists to sift through mountains of data. 
-            We are changing this: training an ML model on publicly available datasets, 
-            we make exoplanet identification and classification accessible and efficient to everybody.</p>
-        <br> <br>
-
-        <h1> Our Model </h1>
-        <p>
-            [yap ypa ypa]
-        </p>
-    </div>
     
-<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <div class="horizontal-container">
+        <div id="scroll-glass">
+            <section class="glass">
+                <h1>Challenge Information</h1>
+                <p>NASA missions like Kepler, TESS and K2 have discovered so much outside of our solar system. However, identifying these objects is slow, requiring scientists to sift through mountains of data. We are changing this: training an ML model on publicly available datasets, we make exoplanet identification and classification accessible and efficient to everybody.</p>
+            </section>
+            <section class="glass">
+                <h1>Our Model</h1>
+                <p>[yap]</p>
+            </section>
+            <section class="glass">
+                <h1>Future Plans</h1>
+                <p>More ML improvements, interactive visualizations, and accessibility for everyone.</p>
+            </section>
+            <section class="glass">
+                <h1>idk???</h1>
+            </section>
+        </div>
+    </div>
+
+    <div id="progress-bar-container">
+        <div id="progress-bar"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/parallax.js') }}"></script>
 </body>
 </html>
