@@ -10,3 +10,5 @@ This ran over the course of 12 hours, and with our most effective and optimal se
 Above is an example of the bayesian search running.
 
 Our locally hosted website can be ran with `flask run` in the terminal after installing all the dependencies, with 2 sections, being Home and Model. The home page provides the information regarding the challenge, and the model page provides a user-friendly interface to tweak the parameters themself and run the model, while providing external information regarding a potential extraterrestrial body.
+
+Unfortunately, over the course of this experience, we didn't finish fully implementing the model into the website, but it still does work internally.
