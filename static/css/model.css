@@ -71,6 +71,19 @@ button:hover {
   width: 80%;
 }
 
+#settingsContainer{
+  display: grid;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid var(--hg);
+  width: auto;
+
+}
+
+
 /* conditionals */
 @media screen and (max-width: 300px) {
   span.psw {
