@@ -254,6 +254,30 @@
     </section>
 </div>
 
+<div id="runModelContainer" class="glass" style="margin: 2rem auto; width: 60%; text-align: center; padding: 1.5rem;">
+    <h2>Run ML Model</h2>
+    <p>Click the button below to send your input data and get a prediction.</p>
+    <form id="runModelForm">
+        <button type="submit" class="save">Run Model</button>
+    </form>
+    <div id="modelResult" class="glass" style="
+        margin-top: 1rem;
+        padding: 1rem;
+        min-height: 2rem;
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 12px;
+        color: #fff;
+        font-weight: bold;
+        opacity: 0;
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    "></div>
+</div>
+
+
 <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 <script src="static/js/formTemplate.js"></script>

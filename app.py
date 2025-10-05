@@ -77,6 +77,23 @@ def displayModel():
         """
 
 
+# model = pickle.load(open('model.pkl', 'rb'))
+
+# @app.route('/')
+# def home():
+#     return render_template('home.html')
+
+# @app.route('/run_model', methods=['POST'])
+# def run_model():
+#     data = request.get_json()  # get JSON from frontend
+#     # Convert data to format your ML model expects
+#     features = [float(data[k]) for k in sorted(data.keys())]  # example
+#     prediction = model.predict([features])[0]
+#     return jsonify({'prediction': prediction})
+
+# if __name__ == '__main__':
+#     app.run(debug=True)
+
 # @app.route("/adv", methods=["GET"])
 # def displayAdvancedModel():
 #     return render_template("advmodel.html")
