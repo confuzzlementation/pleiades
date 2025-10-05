@@ -15,10 +15,9 @@ window.onclick = function(event) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('fieldset.collapsible').forEach(fieldset => {
-        fieldset.classList.remove('collapsed');
-        const legend = fieldset.querySelector('legend');
+    document.querySelectorAll('fieldset.collapsible legend').forEach(legend => {
         legend.addEventListener('click', () => {
+            const fieldset = legend.parentElement;
             fieldset.classList.toggle('collapsed');
         });
     });

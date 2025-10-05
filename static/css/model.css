@@ -1,19 +1,19 @@
 #openSettings {
   background-color: var(--hg);
-  padding: 6px 10px;
+  padding: 5px 8px;
   float: right;
-  margin: 20px 30px;
-  font-size: 0.9rem;
+  margin: 15px 25px;
+  font-size: 0.8rem;
 }
 
 button {
   font-family: Lexend, sans-serif;
-  padding: 6px 30px;
-  font-size: 0.85rem;
+  padding: 5px 20px;
+  font-size: 0.75rem;
   color: var(--text);
   background-color: var(--bg);
   border: 0;
-  border-radius: 24px;
+  border-radius: 20px;
   cursor: pointer;
   transition: transform 0.2s, opacity 0.3s;
 }
@@ -43,18 +43,18 @@ button.cancel:hover {
 
 h2 {
   text-align: center;
-  margin-bottom: 0.75rem;
-  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
 }
 
 input, label input {
   width: 100%;
-  padding: 6px 8px;
+  padding: 4px 6px;
   border-radius: 4px;
   border: 1px solid rgba(255,255,255,0.2);
   background: rgba(255,255,255,0.05);
   color: #fff;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   transition: all 0.3s ease;
 }
 
@@ -68,20 +68,20 @@ input:focus, label input:focus {
 label {
   display: flex;
   align-items: center;
-  gap: 5px;
-  margin-bottom: 8px;
-  font-size: 14px;
+  gap: 4px;
+  margin-bottom: 6px;
+  font-size: 0.75rem;
 }
 
 label .tooltip {
   display: inline-block;
-  width: 16px;
-  height: 16px;
-  line-height: 16px;
+  width: 14px;
+  height: 14px;
+  line-height: 14px;
   text-align: center;
   border-radius: 50%;
   background: rgba(255,255,255,0.1);
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   cursor: pointer;
   position: relative;
   transition: background 0.3s;
@@ -99,10 +99,10 @@ label .tooltip::after {
   transform: translateY(-50%);
   background: rgba(0,0,0,0.9);
   color: #fff;
-  padding: 4px 8px;
-  border-radius: 5px;
+  padding: 3px 6px;
+  border-radius: 4px;
   white-space: nowrap;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s, transform 0.3s;
@@ -136,15 +136,16 @@ label .tooltip:hover::after {
 }
 
 .modal-content {
-  max-width: 450px;
+  max-width: 420px;
   width: 90%;
   background: linear-gradient(315deg, #072444 0%, #1a0331 100%);
   border-radius: 10px;
-  padding: 1.2rem;
+  padding: 1rem;
   margin: auto;
   color: white;
   font-family: 'Poppins', sans-serif;
   animation: animatezoom 0.5s;
+  font-size: 0.8rem;
 }
 
 @keyframes animatezoom {
@@ -155,11 +156,11 @@ label .tooltip:hover::after {
 fieldset.collapsible {
   border: 1px solid rgba(255,255,255,0.3);
   border-radius: 10px;
-  padding: 0.5rem 1rem;
-  margin-bottom: 0.75rem;
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 0.5rem;
   background: rgba(255,255,255,0.05);
   overflow: hidden;
-  transition: all 0.5s ease;
+  transition: all 0.4s ease;
 }
 
 fieldset.collapsible legend {
@@ -167,12 +168,13 @@ fieldset.collapsible legend {
   font-weight: bold;
   color: #fff;
   position: relative;
+  font-size: 0.8rem;
 }
 
 fieldset.collapsible legend::after {
   content: ' ▼ ';
   float: right;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   transition: transform 0.3s ease;
 }
 
@@ -184,8 +186,8 @@ fieldset.collapsible.collapsed legend::after {
   overflow: hidden;
   max-height: 1000px;
   opacity: 1;
-  transition: max-height 0.5s ease, opacity 0.3s ease, padding 0.3s ease;
-  padding-top: 0.5rem;
+  transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+  padding-top: 0.4rem;
 }
 
 fieldset.collapsible.collapsed .fieldset-content {
@@ -196,19 +198,19 @@ fieldset.collapsible.collapsed .fieldset-content {
 
 .features-grid {
   display: grid;
-  gap: 0.5rem 1rem;
-  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem 0.8rem;
+  grid-template-columns: repeat(4, 1fr);
 }
 
 #featuresForm {
-  margin: 1rem;
+  margin: 0.8rem;
 }
 
 .modal-buttons {
   display: flex;
   justify-content: flex-end;
-  gap: 0.5rem;
-  margin-top: 1rem;
+  gap: 0.4rem;
+  margin-top: 0.8rem;
 }
 
 @media (max-width: 800px) {
