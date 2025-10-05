@@ -27,23 +27,23 @@ body {
 }
 
 hr {
-    color: var(--text);
-    margin-top: 0px;
-    margin-bottom: 0px;
+  color: var(--text);
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 h1 {
-    font-size: 50px;
+  font-size: 50px;
 }
 
 a {
-    color: var(--text);
+  color: var(--text);
 }
 
 /* classes */
 .centreBox {
-    margin: auto;
-    width: 70%;
+  margin: auto;
+  width: 70%;
 }
 
 .centred {
