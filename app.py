@@ -60,8 +60,8 @@ def displayModel():
         limb_darkening_1 = request.form["limb_darkening_1"]
         limb_darkening_2 = request.form["limb_darkening_2"]
 
-        prediction = model.predict(vectorizer.transform([review]))
-        return(flask.render_template('main.html', result=result))
+        result = model.predict(vectorizer.transform([max_depth, min_child_weight, learning_rate, subsample, colsample_bytree, alpha, lmbda, orbital_period, transit_epoch, impact_parameter, transit_duration_hours, transit_depth_ppm, planet_star_ratio, stellar_density, planet_radius, semi_major_axis, inclination, insolation_flux, limb_darkening_1, limb_darkening_2]))
+        return(flask.render_template('model.html', result=result))
         # etc. do ^^ for whichever other parameters we end up using
         # return(flask.render_template('main.html', predict_text=predict_text, movie=movie, result=prediction))
         """ 
