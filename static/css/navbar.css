@@ -37,6 +37,7 @@
   overflow: hidden;
   /* background-color: var(--bg); */
   z-index: 100;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .topnav a:hover {

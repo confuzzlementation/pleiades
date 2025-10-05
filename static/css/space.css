@@ -42,7 +42,7 @@ body::before {
     overflow: hidden;
     padding-left: 15vw;
     box-sizing: border-box;
-    width: calc(85vw * 4);
+    width: calc(85vw * 5);
 }
 
 .slide {

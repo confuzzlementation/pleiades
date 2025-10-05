@@ -1,20 +1,16 @@
 var popUp = document.getElementById('popUp');
 
-// When the user clicks anywhere outside of the modal, close it
+function displayPopup() {
+    popUp.classList.add('show');
+}
+
+function closePopup() {
+    popUp.classList.remove('show');
+}
+
+// Close when clicking outside modal content
 window.onclick = function(event) {
-    if (event.target == popUp) {
-        closePopup()
+    if (event.target === popUp) {
+        closePopup();
     }
-}
-//fix this
-function displayPopup(){
-    popUp.style.display = 'flex';
-}
-
-function closePopup(){
-    popUp.style.display='none'
-}
-
-if (window.history.replaceState) {
-    window.history.replaceState(null, null, window.location.href);
 }
