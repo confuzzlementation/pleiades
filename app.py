@@ -11,14 +11,14 @@ import pickle
 import pandas as pd
 
 # # Use pickle to load in the pre-trained model.
-with open(f'gdbtmodel.pkl', 'rb') as f: # need to change to our file
-    model = pickle.load(f)
+# with open(f'gdbtmodel.pkl', 'rb') as f: # need to change to our file
+#     model = pickle.load(f)
 
 app = Flask(__name__)
 CORS(app)
 
 model_manager = ModelManager()
-model = joblib.load('xgboost_model.pkl')
+# model = joblib.load('xgboost_model.pkl')
 
 app.config["MODEL_MANAGER"] = model_manager
 
