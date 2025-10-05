@@ -40,7 +40,7 @@ def objective(trial):
         "reg_lambda": trial.suggest_float("reg_lambda", 1e-8, 100.0, log=True),
         "gamma": trial.suggest_float("gamma", 1e-8, 20.0, log=True),
         "n_estimators": 10000,
-        "max_bin": trial.suggest_int("max_bin", 512, 1024),
+        "max_bin": trial.suggest_int("max_bin", 512, 2048),
         "grow_policy": growMethod,
         "max_delta_step": trial.suggest_int("max_delta_step", 0, 16),
     }
@@ -63,7 +63,7 @@ def objective(trial):
             params["scale_pos_weight"] = 1.0
 
         callbacks=[
-            EarlyStopping(rounds=300, save_best=True),
+            EarlyStopping(rounds=250, save_best=True),
             XGBoostPruningCallback(trial, "validation_0-auc")
         ]
         model = xgb.XGBClassifier(**params, n_jobs=1, callbacks=callbacks, verbosity=0)
@@ -72,7 +72,7 @@ def objective(trial):
         model.fit(
             X_tr, y_tr,
             eval_set=[(X_val, y_val)],
-            verbose=False,
+            verbose=2,
         )
 
         
@@ -83,7 +83,7 @@ def objective(trial):
 
     return sum(aucs) / len(aucs)
 
-study = optuna.create_study(direction="maximize", sampler=optuna.samplers.TPESampler(seed=123, multivariate=True, group=True), pruner=optuna.pruners.SuccessiveHalvingPruner(reduction_factor=3, min_resource=200))
+study = optuna.create_study(direction="maximize", sampler=optuna.samplers.TPESampler(seed=123, multivariate=True, group=True), pruner=optuna.pruners.SuccessiveHalvingPruner(reduction_factor=2, min_resource=150))
 study.optimize(objective, n_trials= 50, show_progress_bar=True)
 
 print("Best parameters:", study.best_params)
