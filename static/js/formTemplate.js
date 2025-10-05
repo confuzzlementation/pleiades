@@ -3,12 +3,12 @@ var popUp = document.getElementById('popUp');
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
     if (event.target == modal) {
-        modal.style.display = "none";
+        closePopup()
     }
 }
-
+//fix this
 function displayPopup(){
-    popUp.style.display='block';
+    popUp.style.display = 'flex';
     popUp.style.width = 'auto';
 }
 
@@ -17,5 +17,5 @@ function closePopup(){
 }
 
 if (window.history.replaceState) {
-  window.history.replaceState(null, null, window.location.href);
+    window.history.replaceState(null, null, window.location.href);
 }

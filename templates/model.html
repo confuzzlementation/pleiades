@@ -10,8 +10,10 @@
     <link rel="stylesheet" href="static/css/base.css">
     <link rel="stylesheet" href="static/css/navbar.css">
     <link rel="stylesheet" href="static/css/model.css">
+    <link rel="stylesheet" href="static/css/space.css">
 </head>
 <body>
+    <div id="particles-js"></div>
     <div id="navbar" class="topnav">
         <img src="static/icons/favicon.png" id="teamLogo">
         <!-- <a href="adv" id="adv">Advanced Model</a> -->
@@ -27,52 +29,62 @@
 
 <div id="popUp" class="modal">
   <form class="modal-content animate" method="post">
-        <div class="container">
-            <h2><b>Settings</b></h2>
+    <div class="container">
+      <h2>Settings</h2>
 
-            <label for="tree_method"><b>Tree Method</b></label>
-            <input type="text" placeholder="Enter tree method" name="tree_method">
+      <fieldset>
+        <legend>Tree Parameters</legend>
+        <label>Maximum Depth
+          <span class="tooltip" title="Maximum depth of each tree. Higher values can overfit.">?</span>
+          <input type="number" name="max_depth" placeholder="1-20" min="1" max="20">
+        </label>
+        <label>Minimum Child Weight
+          <span class="tooltip" title="Minimum sum of instance weight needed in a child.">?</span>
+          <input type="number" name="min_child_weight" placeholder="1+" min="1">
+        </label>
+      </fieldset>
 
+      <fieldset>
+        <legend>Learning Parameters</legend>
+        <label>Learning Rate
+          <span class="tooltip" title="Step size shrinkage to prevent overfitting. 0.01-1.">?</span>
+          <input type="number" name="learning_rate" placeholder="0.01 - 1" step="0.01" min="0" max="1">
+        </label>
+        <label>Subsample
+          <span class="tooltip" title="Fraction of training data used for each tree. 0.1-1.">?</span>
+          <input type="number" name="subsample" placeholder="0.1 - 1" step="0.05" min="0.1" max="1">
+        </label>
+        <label>Columns per Tree
+          <span class="tooltip" title="Fraction of columns used per tree. 0.1-1.">?</span>
+          <input type="number" name="colsample_bytree" placeholder="0.1 - 1" step="0.05" min="0.1" max="1">
+        </label>
+      </fieldset>
 
-            <label for="max_depth"><b>Maximum Depth</b></label>
-            <input type="number" step=1 placeholder="Enter maximum depth" name="max_depth">
+      <fieldset>
+        <legend>Regularization</legend>
+        <label>Alpha (α)
+          <span class="tooltip" title="L1 regularization term on weights. 0+">?</span>
+          <input type="number" name="alpha" placeholder="0.0+" step="0.01" min="0">
+        </label>
+        <label>Lambda (λ)
+          <span class="tooltip" title="L2 regularization term on weights. 0+">?</span>
+          <input type="number" name="lambda" placeholder="0.0+" step="0.01" min="0">
+        </label>
+      </fieldset>
 
-            <label for="max_delta_step"><b>Max Delta Step</b></label>
-            <input type="number" step=1 placeholder="Enter max delta step" name="max_delta_step">
-
-            <label for="learning_rate"><b>Learning Rate</b></label>
-            <input type="number" step=0.01 placeholder="Enter learning rate" name="learning_rate">
-
-            <label for="alpha"><b>Alpha (α)</b></label>
-            <input type="number" step=0.01 placeholder="Enter alpha" name="alpha">
-
-            <label for="lambda"><b>Lambda (λ)</b></label>
-            <input type="number" step=0.01 placeholder="Enter lambda" name="lambda">
-
-            <label for="gamma"><b>Gamma (γ)</b></label>
-            <input type="number" step=0.01 placeholder="Enter gamma" name>
-            
-            <label for="subsample"><b> Subsample</b></label>
-            <input type="number" step=0.01 placeholder="Enter subsample" name="subsample">
-
-            <label for="colsample_bytree"><b> Percentage of Columns per Tree </b></label>
-            <input type="text" step=0.1 placeholder="Enter column percentage by tree" name="colsample_bytree">
-
-            <label for="min_child_weight"><b>Minimum Child Weight</b></label>
-            <input type="number" step="1" placeholder="Enter minimum child weight" name="min_child_weight">
-
-            <label for="n_estimators"><b>Number of Estimators</b></label>
-            <input type="number" placeholder="Enter number of estimators" name="n_estimators">
-
-
-
-            <button type="submit"> Save Settings</button>
-            <button type="button" onclick="closePopup()" id="cancelButton">Cancel</button>
-        </div>
+      <div class="modal-buttons">
+        <button type="button" onclick="closePopup()" class="cancel">Cancel</button>
+        <button type="submit" class="save">Save Settings</button>
+      </div>
+    </div>
   </form>
 </div>
+
     
 <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
 <script src="static/js/formTemplate.js"></script>
+<script src="static/js/script.js"></script>
+<script src="static/js/stars.js"></script>
 </body>
 </html>
