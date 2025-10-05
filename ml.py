@@ -18,6 +18,7 @@ X_train, X_test, y_train, y_test, groups_train, groups_test = train_test_split(
     X, y, groups, test_size=0.2, random_state=123, stratify=y
 )
 
+
 def objective(trial):
     sgkf = StratifiedGroupKFold(n_splits=5, shuffle=True, random_state=123)
 
@@ -34,8 +35,7 @@ def objective(trial):
         "colsample_bytree": trial.suggest_float("colsample_bytree", 0.4, 1.0),
         "min_child_weight": trial.suggest_int("min_child_weight", 1, 6),
         "n_estimators": trial.suggest_int("n_estimators", 1, 3000),
-        
-        "gamma": trial.suggest_float("gamma", 0.0, 10.0)
+        "gamma": trial.suggest_float("gamma", 0.0, 10.0),
     }
 
     aucs = []
@@ -44,11 +44,7 @@ def objective(trial):
         y_tr, y_val = y_train.iloc[train_idx], y_train.iloc[val_idx]
 
         model = xgb.XGBClassifier(**params)
-        model.fit(
-            X_tr, y_tr,
-            eval_set=[(X_val, y_val)],
-            verbose=False
-        )
+        model.fit(X_tr, y_tr, eval_set=[(X_val, y_val)], verbose=False)
 
         preds = model.predict_proba(X_val)[:, 1]
         auc = roc_auc_score(y_val, preds)
@@ -56,8 +52,13 @@ def objective(trial):
 
     return sum(aucs) / len(aucs)
 
-study = optuna.create_study(direction="maximize", sampler=optuna.samplers.TPESampler(seed=123), pruner=optuna.pruners.MedianPruner())
-study.optimize(objective, n_trials= 200, n_jobs=-1, show_progress_bar=True)
+
+study = optuna.create_study(
+    direction="maximize",
+    sampler=optuna.samplers.TPESampler(seed=123),
+    pruner=optuna.pruners.MedianPruner(),
+)
+study.optimize(objective, n_trials=200, n_jobs=-1, show_progress_bar=True)
 
 print("Best parameters:", study.best_params)
 print("Best CV AUC:", study.best_value)
